@@ -1,3 +1,4 @@
+import * as React from "react";
 import Layout from "@/components/Layout";
 import { RESTAURANT_CONFIG } from "@/config/restaurant";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,40 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const HomePage = () => {
+  const galleryImages = React.useMemo(
+    () => [heroImg, outdoorflowerImg, outdoorwiteboardImg, familymealImg, babyImg, artboardImg, tuaristImg, boardImg],
+    [],
+  );
+  const loopImages = React.useMemo(() => [...galleryImages, ...galleryImages], [galleryImages]);
+
+  const galleryRef = React.useRef<HTMLDivElement | null>(null);
+  const rafRef = React.useRef<number | null>(null);
+  const pausedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const el = galleryRef.current;
+    if (!el) return;
+
+    const speedPxPerFrame = 0.6;
+
+    const step = () => {
+      if (!pausedRef.current) {
+        el.scrollLeft += speedPxPerFrame;
+        // loop back after first set
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) {
+          el.scrollLeft = 0;
+        }
+      }
+      rafRef.current = window.requestAnimationFrame(step);
+    };
+
+    rafRef.current = window.requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
@@ -109,7 +144,7 @@ const HomePage = () => {
               </div>
             </div>
             <div>
-              <Badge className="mb-3 bg-secondary text-secondary-foreground border-none">1 Remaining Message From KALKI</Badge>
+              <Badge className="mb-3 bg-secondary text-secondary-foreground border-none">1 Remaining Message From Muthupura Resturent</Badge>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 leading-tight">
                 Escape the noise.
                 <br />Embrace the calm. 🍃✨
@@ -135,8 +170,29 @@ const HomePage = () => {
 
       {/* Gallery Strip */}
       <section className="py-4 bg-muted overflow-hidden">
-        <div className="flex gap-4 animate-scroll" style={{ display: "flex", animation: "scroll 20s linear infinite" }}>
-          {[heroImg,outdoorflowerImg,outdoorwiteboardImg,familymealImg,babyImg,artboardImg,tuaristImg,boardImg,heroImg,hallImg,outdoorflowerImg,outdoorwiteboardImg,familymealImg,babyImg,artboardImg,tuaristImg,boardImg].map((img, i) => (
+        <div
+          ref={galleryRef}
+          className="flex gap-4 overflow-x-auto touch-pan-x select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          onPointerDown={() => {
+            pausedRef.current = true;
+          }}
+          onPointerUp={() => {
+            pausedRef.current = false;
+          }}
+          onPointerCancel={() => {
+            pausedRef.current = false;
+          }}
+          onPointerLeave={() => {
+            pausedRef.current = false;
+          }}
+          onMouseEnter={() => {
+            pausedRef.current = true;
+          }}
+          onMouseLeave={() => {
+            pausedRef.current = false;
+          }}
+        >
+          {loopImages.map((img, i) => (
             <img
               key={i}
               src={img}
