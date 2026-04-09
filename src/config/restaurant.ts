@@ -10,13 +10,13 @@ import beverageImg from "@/assets/food-beverage.jpg";
 import pastaImg from "@/assets/food-pasta.jpg";
 
 export const RESTAURANT_CONFIG = {
-  name: "KALKI GARDEN CAFE",
+  name: "Muthupura Family Resturent",
   tagline: "The Dreams Start Here",
   description:
-    "✨ දවසින් දවස අලුත් වෙන KALKI GARDEN CAFE කියන්නෙ වෙනස් වයිබ් එකට කැමති අයටම හදපු තැනක් වස විස නැතිව සාදාරන මුදලට කන්න පුලුවන් කෑම ගොඩාක් තියෙනව වගේම දවසින් දවස මෙනු එක අලුත් වෙනවා ♨️",
-  phone: "0772010016",
+    "✨ දවසින් දවස අලුත් වෙන Muthupura Family Resturent කියන්නෙ වෙනස් වයිබ් එකට කැමති අයටම හදපු තැනක් වස විස නැතිව සාදාරන මුදලට කන්න පුලුවන් කෑම ගොඩාක් තියෙනව වගේම දවසින් දවස මෙනු එක අලුත් වෙනවා ♨️",
+  phone: "0773931600",
   email: "info@flavorhouse.lk",
-  address: "No 55/5, Graceland Circular Road, Horana, Sri Lanka, 12400",
+  address: "Anguruwatota Road, 12400",
   openingHours: "Mon - Sun: 10:00 AM - 11:00 PM",
   socialLinks: {
     facebook: "https://www.bing.com/ck/a?!&&p=cf3cab9972a543a2639b16a985994d446c595694bd1203dda57b04c4fe62440eJmltdHM9MTc3NTQzMzYwMA&ptn=3&ver=2&hsh=4&fclid=2581269e-4599-6c33-0170-33e544196d3d&psq=kalki+garden+cafe&u=a1aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Byb2ZpbGUucGhwLz9pZD02MTU3MTI0MjQ0NTQwNg",
