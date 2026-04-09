@@ -1,0 +1,22 @@
+<svg viewBox="0 0 556 556" xmlns="http://www.w3.org/2000/svg">
+  <rect width="556" height="556" fill="#3d4d37"/>
+  <g transform="translate(278 278)">
+    <!-- Outer Circle -->
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#D4A574" stroke-width="20"/>
+    <!-- Inner Circle -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#D4A574" stroke-width="16"/>
+    <!-- Chinese Characters styled as text -->
+    <text x="-90" y="30" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#D4A574" text-anchor="middle">奇</text>
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#D4A574" text-anchor="middle">妙</text>
+    <text x="90" y="30" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#D4A574" text-anchor="middle">奇</text>
+    <!-- Spoon icon -->
+    <path d="M 120 -60 Q 140 -40 140 -20 Q 140 0 120 20 L 100 40" stroke="#D4A574" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <!-- Text arc at bottom -->
+    <path id="arcPath" d="M -140 0 A 140 140 0 0 1 140 0" fill="none"/>
+    <text font-family="Arial, sans-serif" font-size="28" fill="#D4A574" letter-spacing="8">
+      <textPath href="#arcPath" startOffset="50%" text-anchor="middle">
+        THE DREAMS START HERE
+      </textPath>
+    </text>
+  </g>
+</svg>
