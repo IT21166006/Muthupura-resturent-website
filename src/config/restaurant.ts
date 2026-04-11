@@ -15,6 +15,8 @@ export const RESTAURANT_CONFIG = {
   description:
     "✨ දවසින් දවස අලුත් වෙන Muthupura Family Resturent කියන්නෙ වෙනස් වයිබ් එකට කැමති අයටම හදපු තැනක් වස විස නැතිව සාදාරන මුදලට කන්න පුලුවන් කෑම ගොඩාක් තියෙනව වගේම දවසින් දවස මෙනු එක අලුත් වෙනවා ♨️",
   phone: "0773931600",
+  /** Digits only (country code, no +). Used when sending orders from the website order page. */
+  orderWhatsAppNumber: "94787531115",
   email: "info@flavorhouse.lk",
   address: "Anguruwatota Road, 12400",
   openingHours: "Mon - Sun: 10:00 AM - 11:00 PM",
@@ -78,17 +80,47 @@ export const RESTAURANT_CONFIG = {
       overlayOpacity: "from-foreground/80",
     },
   ],
-  menuCategories: ["Biryani", "Rice", "Beverages", "Pasta", "Noodles"] as const,
+  menuCategories: [
+    "Fried Rice",
+    "Noodles",
+    "Kottu",
+    "Cheese Kottu",
+    "Pasta",
+    "Beef",
+    "Prowns",
+    "Cuttle Fish",
+    "Boil",
+    "Fries",
+    "Pork",
+    "Omlette",
+    "Cheese Omlette",
+    "Chopsy Rice",
+    "Soup",
+    "Cheese Pasta",
+    "Nasigoreng",
+    "Sausages",
+    "Chicken",
+    "Fish",
+    "Biryani",
+    "Beverages",
+  ] as const,
 };
 
 export type MenuCategory = (typeof RESTAURANT_CONFIG.menuCategories)[number];
 
+/** Portion / size label with price (e.g. Medium-Rs.500). */
+export interface MenuSizePrice {
+  label: string;
+  price: number;
+}
+
 export interface MenuItem {
   id: string;
   name: string;
+  /** Short line shown under pricing on menu cards. */
   description: string;
-  price: number;
-  unit: string;
+  /** Every item should list at least one size; typical pattern is Medium + Large. */
+  sizes: MenuSizePrice[];
   category: MenuCategory;
   image: string;
   isPopular?: boolean;
