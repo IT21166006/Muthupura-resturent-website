@@ -5,6 +5,7 @@ import { RESTAURANT_CONFIG, type MenuCategory } from "@/config/restaurant";
 import { menuItems } from "@/config/menuData";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { Search, ShoppingBag, Flame } from "lucide-react";
 import heroImg from "@/assets/hero-restaurant.jpg";
 
@@ -91,32 +92,45 @@ const MenuPage = () => {
                       <Flame size={12} /> Popular
                     </Badge>
                   )}
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-foreground/70 text-primary-foreground text-xs font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">
-                      {item.unit}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                <div className="p-6 flex flex-col gap-4">
+                  <h3 className="font-heading text-lg font-bold leading-snug group-hover:text-primary transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
+
+                  <div className="rounded-xl border border-border/60 bg-muted/40 px-4 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2.5">
+                      Portions &amp; pricing
+                    </p>
+                    <ul className="space-y-2">
+                      {item.sizes.map((s) => (
+                        <li
+                          key={`${item.id}-${s.label}`}
+                          className="flex items-baseline justify-between gap-3 text-sm"
+                        >
+                          <span className="text-foreground/90">{s.label}</span>
+                          <span className="shrink-0 font-bold tabular-nums text-primary">
+                            Rs.&nbsp;{s.price.toLocaleString("en-LK")}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                     {item.description}
                   </p>
-                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                    <div>
-                      <span className="text-2xl font-bold text-primary">Rs. {item.price}</span>
-                    </div>
-                    <Button
-                      size="sm"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5 rounded-full px-5"
-                    >
-                      <ShoppingBag size={14} /> Order
-                    </Button>
-                  </div>
+
+                  <Button
+                    className="w-full mt-auto bg-primary text-primary-foreground hover:bg-primary/90 gap-2 rounded-xl py-6 text-base font-semibold"
+                    asChild
+                  >
+                    <Link to={`/order?item=${encodeURIComponent(item.id)}`}>
+                      <ShoppingBag size={18} /> Order
+                    </Link>
+                  </Button>
                 </div>
               </div>
             ))}
