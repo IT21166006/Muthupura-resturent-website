@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { RESTAURANT_CONFIG, type MenuCategory } from "@/config/restaurant";
 import { menuItems } from "@/config/menuData";
 import { Button } from "@/components/ui/button";
@@ -56,18 +57,33 @@ const MenuSection = () => {
                   </Badge>
                 )}
               </div>
-              <div className="p-5">
-                <h3 className="font-heading text-lg font-semibold mb-1">{item.name}</h3>
-                <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{item.description}</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-xl font-bold text-primary">Rs. {item.price}</span>
-                    <span className="text-xs text-muted-foreground ml-1">/ {item.unit}</span>
-                  </div>
-                  <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Order Now
-                  </Button>
+              <div className="p-5 flex flex-col gap-3">
+                <h3 className="font-heading text-lg font-semibold leading-snug">{item.name}</h3>
+
+                <div className="rounded-lg border border-border/60 bg-muted/40 px-3 py-2.5">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                    Portions &amp; pricing
+                  </p>
+                  <ul className="space-y-1.5">
+                    {item.sizes.map((s) => (
+                      <li
+                        key={`${item.id}-${s.label}`}
+                        className="flex items-baseline justify-between gap-2 text-sm"
+                      >
+                        <span className="text-foreground/90">{s.label}</span>
+                        <span className="shrink-0 font-bold tabular-nums text-primary">
+                          Rs.&nbsp;{s.price.toLocaleString("en-LK")}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{item.description}</p>
+
+                <Button size="sm" className="w-full mt-auto bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                  <Link to={`/order?item=${encodeURIComponent(item.id)}`}>Order Now</Link>
+                </Button>
               </div>
             </div>
           ))}
